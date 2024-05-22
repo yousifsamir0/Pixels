@@ -1,0 +1,10 @@
+blinker==1.7.0
+setuptools
+opencv-python
+pyautogui
+Pillow
+pynput
+requests
+selenium
+selenium-wire
+playwright

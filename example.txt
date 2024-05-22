@@ -1,0 +1,41 @@
+Traceback (most recent call last):
+  File "D:\_____WorkArea\PIXELS_BOT\python\web_driver.py", line 201, in <module>
+    Market.buy('popberry',1000,42)
+  File "D:\_____WorkArea\PIXELS_BOT\python\driver\core\market.py", line 56, in buy
+    view_listing_btn.click()
+  File "C:\Python39\lib\site-packages\selenium\webdriver\remote\webelement.py", line 94, in click
+    self._execute(Command.CLICK_ELEMENT)
+  File "C:\Python39\lib\site-packages\selenium\webdriver\remote\webelement.py", line 395, in _execute
+    return self._parent.execute(command, params)
+  File "C:\Python39\lib\site-packages\selenium\webdriver\remote\webdriver.py", line 347, in execute
+    self.error_handler.check_response(response)
+  File "C:\Python39\lib\site-packages\selenium\webdriver\remote\errorhandler.py", line 229, in check_response
+    raise exception_class(message, screen, stacktrace)
+selenium.common.exceptions.ElementClickInterceptedException: Message: element click intercepted: Element <button class="commons_pushbutton__7Tpa3 Marketplace_viewListings__q_KfD">...</button> is not clickable at point (1102, 448). Other element would receive the click: <div class="commons_modalBackdrop__EOPaN">...</div>
+  (Session info: chrome=124.0.6367.156)
+Stacktrace:
+        GetHandleVerifier [0x00007FF7A6D01562+60802]
+        (No symbol) [0x00007FF7A6C7AC62]
+        (No symbol) [0x00007FF7A6B37CE4]
+        (No symbol) [0x00007FF7A6B8E877]
+        (No symbol) [0x00007FF7A6B8C344]
+        (No symbol) [0x00007FF7A6B8980A]
+        (No symbol) [0x00007FF7A6B889E2]
+        (No symbol) [0x00007FF7A6B7AE8B]
+        (No symbol) [0x00007FF7A6BAAB7A]
+        (No symbol) [0x00007FF7A6B7A7C6]
+        (No symbol) [0x00007FF7A6BAAD90]
+        (No symbol) [0x00007FF7A6BCA224]
+        (No symbol) [0x00007FF7A6BAA923]
+        (No symbol) [0x00007FF7A6B78FEC]
+        (No symbol) [0x00007FF7A6B79C21]
+        GetHandleVerifier [0x00007FF7A70041FD+3217949]
+        GetHandleVerifier [0x00007FF7A7046197+3488183]
+        GetHandleVerifier [0x00007FF7A703F11F+3459391]
+        GetHandleVerifier [0x00007FF7A6DBB926+823622]
+        (No symbol) [0x00007FF7A6C85FFF]
+        (No symbol) [0x00007FF7A6C80F24]
+        (No symbol) [0x00007FF7A6C810B2]
+        (No symbol) [0x00007FF7A6C71904]
+        BaseThreadInitThunk [0x00007FF8CE1C7344+20]
+        RtlUserThreadStart [0x00007FF8CEE826B1+33]
