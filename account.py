@@ -77,7 +77,6 @@ def run_bots(acc_number_range,callbacks=[]):
         print(f'account {i}  going to logout')
         HUD.cookies_logout()
         print(f'account {i} logged out')
-        v.screenshot()
 
 
 
