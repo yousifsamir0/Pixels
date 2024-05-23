@@ -61,7 +61,7 @@ class PixelsBase:
         travilla_btn =self.driver.wait_till_element_clickable("//*[contains(text(), 'Go to Terravilla')]")
         if not travilla_btn: print('[travel]: could not find travilla_btn'); return False
         if str(landNumber) != 'tv':
-            self.pw.startIntercept(landNumber)
+            self.pw.startIntercept(mapId)
         travilla_btn.click()
         self.wait_for_travel()
         if str(landNumber) != 'tv':
