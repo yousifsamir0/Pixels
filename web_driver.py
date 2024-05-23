@@ -200,6 +200,11 @@ class Chrome():
         self.swap_slots(oldSlot,slotNumber)
 
 
+
+    # Items.pw.startIntercept(1019)
+    # print('started')
+    # time.sleep(5)
+    # Items.pw.stopIntercept()
 if __name__=='__main__':
 
     # c = Chrome()
@@ -207,7 +212,11 @@ if __name__=='__main__':
     from driver.pixels_driver import Items,Market
     from driver.core.parser import WebSocketParser
     from driver.core.commands import cut_trees_command,collect_wood_command
-
+    from Tasks import buy_from_hazel,go_sell_items
+    # Items.travel_bookmark('generalStore')
+    go_sell_items()
+    # buy_from_hazel('butterberryseeds',1)
+    
     # data = Items.driver.evaluate_handle(f"JSON.parse('{json.dumps([1,2,3,[4,5,6]])}')")
     # wsProto=Items.driver.evaluate_handle('WebSocket.prototype')
     # instances = Items.driver.queryObjects(wsProto)
@@ -246,11 +255,6 @@ if __name__=='__main__':
 #                 'awaitPromise': True,
 #                 'userGesture': True,
 #             })
-    
-
-
-
-    
 
 
 

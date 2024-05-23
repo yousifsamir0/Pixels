@@ -13,13 +13,14 @@ class WebSocketParser():
     def parseFrame(cls,payload):
         if  (payload[0]==0x0e):  #mapData
             cls.parse_map_data(payload)
-
+            pass
         elif (payload[0]==0x11): #updatePlayer frame
             cls.parse_updatePlayer_frame(payload)
+            pass
 
         elif (payload[2:10] == b'joinRoom'): #joinRoom frame
             cls.parse_joinRoom_frame(payload)
-            
+            pass
 
     @classmethod
     def parse_map_data(cls,payload:bytes):
@@ -33,7 +34,7 @@ class WebSocketParser():
         # Extract IDs from matches
         # print([match  for match in matches])
         # print(payload)
-        cls.ent_soil= [match[2:26].decode() for match in matches]
+        cls.ent_soil= [match[:24].decode() for match in matches]
 
     @classmethod
     def parse_updatePlayer_frame(cls,payload:bytes):

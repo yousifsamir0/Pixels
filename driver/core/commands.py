@@ -35,3 +35,16 @@ def cut_trees_command():
     commands_list = [list(cutC+trees_ids.encode()) for trees_ids in trees_ids[:]]
     
     return (commands_list*6)
+
+def buy_from_hazel_command(itemName:str,quantity:int):
+    quantity_binary = b'\xcc'+quantity.to_bytes() if (quantity<256 )  else b'\xcd'+quantity.to_bytes(2)
+    itemName_binary = (0xa4 +len(itemName)).to_bytes() + b'itm_' +itemName.encode()
+    buyC = b'\r\xacbuyStoreItem\x83\xa7storeId\xafstr_bucksGalore\xa6itemId'+itemName_binary+b'\xa8quantity'+quantity_binary
+    return [list(buyC)]
+
+def sell_items_command(itemName:str,quantity:int,pricePerOne:int):
+    quantity_binary = b'\xcc'+quantity.to_bytes() if (quantity<256 )  else b'\xcd'+quantity.to_bytes(2)
+    price_binary =    b'\xcc'+pricePerOne.to_bytes() if (pricePerOne<256 )  else b'\xcd'+pricePerOne.to_bytes(2)
+    itemName_binary = (0xa4 +len(itemName)).to_bytes() + b'itm_' +itemName.encode()
+    sellC=b'\r\xabmarketplace\x85\xaasubcommand\xa6create\xa6itemId'+itemName_binary+b'\xa8quantity'+quantity_binary+b'\xa5price'+price_binary+b'\xa8currency\xa9cur_coins'
+    return [list(sellC)]

@@ -1,11 +1,11 @@
 import Player
-from farm import SEED, farm_land_range, farm_sort_items,callback_base
+from farm import SEED,SEED_NAME, farm_land_range, farm_sort_items,callback_base
 from net.client import Client
 from utils import wait_until
 import vision
 import time
 from driver.pixels_driver import HUD,Items,Market,Trade
-from driver.core.commands import cut_trees_command,collect_wood_command
+from driver.core.commands import sell_items_command,buy_from_hazel_command, cut_trees_command,collect_wood_command
 
 player = Player.Player()
 
@@ -93,6 +93,12 @@ def go_to_bucks_from_sauna(fromLand):
     player.play('land_records/sauna_galore')
     player.vision.wait_untill_travel()
     player.vision.left_mouse_hold(800,180,7)
+
+def buy_from_hazel(itemName:str,amount:int):
+    HUD.travel_bookmark('generalStore')
+    time.sleep(0.5)
+    HUD.driver.sendWS(buy_from_hazel_command(itemName,int(amount)))
+    
 def buy_from_hazel_from_sauna(fromLand,itemName,amount):
     goto_triv_from_sauna(fromLand)
     player.play('land_records/sauna_galore')
@@ -123,12 +129,26 @@ def collect_trees_from_sauna(fromLand):
 
 def cut_trees(i=None):
     HUD.travel_bookmark()
-    HUD.driver.sendWS(cut_trees_command(),0.5)
-    time.sleep(1)
+    HUD.driver.sendWS(cut_trees_command(),0.4)
+    time.sleep(2)
     HUD.driver.sendWS(collect_wood_command())
     time.sleep(0.5)
 
-def go_sell_items(fromLand,):
+def go_sell_items():
+    # {'name':'honey','price':15},
+    # {'name':'beeswax','price':25},
+    itemsList = [
+    {'name':'popberryFruit','price':60},
+    {'name':'wood','price':59},
+    ]
+    HUD.travel_bookmark('generalStore')
+    time.sleep(0.25)
+    for item in itemsList:
+        #item ={'name':'popberry','price':60}
+        HUD.driver.sendWS(sell_items_command(item['name'],1,item['price']))
+
+
+def go_sell_items_old(fromLand,):
     # {'name':'honey','price':15},
     # {'name':'wax','price':25},
     itemsList = [
@@ -201,6 +221,9 @@ def go_buy_items_then_trade_them(i=None):
 
 
 def farm_account(count,accountNumber):
+    if (Items.get_item_count(SEED)<120):
+        buy_from_hazel(SEED_NAME,840)
+        time.sleep(1)
     farm_sort_items(SEED)
     for i in range(count+1):
         onlyShear = True if i == count else False

@@ -23,32 +23,35 @@ def buy_items_wrap(accountNumber):
 
 
 if __name__=='__main__':
-    
+    firstTime=True
+    firstTimeRange=(1,20)
+    accountRange=(1,39)
     while(True):
+        range = firstTimeRange if firstTime else accountRange
+        firstTime = False
         t = time.time()
         callbacks= [collect_mail_if_any]
         state= get_state()
         nextState=""
         if state=='s1':
             nextState='s2'
-            callbacks.extend([farm_account_wrap,collect_trees_wrap])
+            callbacks.extend([farm_account_wrap])
         elif state=='s2':
             nextState='s3'
-            callbacks.extend([collect_trees_wrap])
+            callbacks.extend([cut_trees])
         elif state=='s3':
             nextState='s4'
-            callbacks.extend([collect_trees_wrap])
+            callbacks.extend([cut_trees])
         else:
             nextState='s1'
-            callbacks.extend([collect_trees_wrap])
+            callbacks.extend([cut_trees])
 
         # callbacks.extend([sell_items_wrap])
 
-        accountsRange= (1,39)
-        run_bots(accountsRange,callbacks)
+        run_bots(range,callbacks)
         update_state(nextState)
         timeTaken = (time.time()-t)/60 
-        waitTime = ((6*60)-timeTaken )
+        waitTime = ((6*60)- min(timeTaken,60))
         print('time taken:',timeTaken)
         print('waiting time:',waitTime)
         time.sleep(waitTime*60)

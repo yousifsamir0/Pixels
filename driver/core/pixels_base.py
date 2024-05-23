@@ -52,7 +52,10 @@ class PixelsBase:
     def set_travel_to_land(self):
         pass
 
-    def travel_bookmark(self,landNumber='tv'):
+    def travel_bookmark(self,landNumber:int|float|str='tv'):
+        mapId=str(landNumber)
+        if type(landNumber) == int or type(landNumber) == float:
+            mapId = 'pixelsNFTFarm-'+ mapId
         opened=self.open_land()
         if not opened: return False
         travilla_btn =self.driver.wait_till_element_clickable("//*[contains(text(), 'Go to Terravilla')]")
