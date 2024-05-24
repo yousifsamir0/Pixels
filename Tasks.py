@@ -137,6 +137,8 @@ def cut_trees(i=None):
 def go_sell_items():
     # {'name':'honey','price':15},
     # {'name':'beeswax','price':25},
+    popCount = Items.get_item_count('popberryFruit.png')
+    
     itemsList = [
     {'name':'popberryFruit','price':60},
     {'name':'wood','price':59},
@@ -144,8 +146,10 @@ def go_sell_items():
     HUD.travel_to_bucks_galore()
     time.sleep(0.25)
     for item in itemsList:
-        #item ={'name':'popberry','price':60}
-        HUD.driver.sendWS(sell_items_command(item['name'],1,item['price']))
+        Iname = item['name']
+        Iprice = item['price']
+        Icount = Items.get_item_count(Iname+'.png')
+        HUD.driver.sendWS(sell_items_command(Iname,Icount,Iprice))
 
 
 def go_sell_items_old(fromLand,):

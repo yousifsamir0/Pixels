@@ -46,7 +46,8 @@ if __name__=='__main__':
             nextState='s1'
             callbacks.extend([cut_trees])
 
-        # callbacks.extend([sell_items_wrap])
+        
+        callbacks.extend([sell_items_wrap])
 
         run_bots(range,callbacks)
         update_state(nextState)
