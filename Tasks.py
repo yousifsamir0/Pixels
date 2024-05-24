@@ -95,7 +95,7 @@ def go_to_bucks_from_sauna(fromLand):
     player.vision.left_mouse_hold(800,180,7)
 
 def buy_from_hazel(itemName:str,amount:int):
-    HUD.travel_bookmark('generalStore')
+    HUD.travel_to_bucks_galore()
     time.sleep(0.5)
     HUD.driver.sendWS(buy_from_hazel_command(itemName,int(amount)))
     
@@ -141,7 +141,7 @@ def go_sell_items():
     {'name':'popberryFruit','price':60},
     {'name':'wood','price':59},
     ]
-    HUD.travel_bookmark('generalStore')
+    HUD.travel_to_bucks_galore()
     time.sleep(0.25)
     for item in itemsList:
         #item ={'name':'popberry','price':60}

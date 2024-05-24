@@ -68,7 +68,9 @@ class PixelsBase:
             self.pw.stopIntercept()
         print(f'[travel] Travel to land {landNumber} complete')
         return True
-           
+    def travel_to_bucks_galore(self):
+        self.travel_bookmark()
+        self.travel_bookmark('generalStore')
     def remove_bookmarks(self,landsNumberList=[],removeAll=False):
         opened=self.open_land()
         if not opened: return False

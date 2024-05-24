@@ -62,7 +62,7 @@ class PlayWrite(threading.Thread):
         def on_frame_received(payload:bytes):
             WebSocketParser.parseFrame(payload)
         print(f"WebSocket opened: {ws.url}")
-        ws.on("framesent", frame_sent)
+        # ws.on("framesent", frame_sent)
         ws.on("framereceived", on_frame_received)
         ws.on("close", WebSocketParser.reset)
 

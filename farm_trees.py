@@ -24,7 +24,7 @@ def buy_items_wrap(accountNumber):
 
 if __name__=='__main__':
     firstTime=True
-    firstTimeRange=(1,20)
+    firstTimeRange=(27,39)
     accountRange=(1,39)
     while(True):
         range = firstTimeRange if firstTime else accountRange
