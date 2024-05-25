@@ -16,7 +16,7 @@ def buy_from_hazel_wrap(accountNumber):
     buy_from_hazel_from_sauna(LAND,'popberry',840)
 
 def sell_items_wrap(accountNumber):
-    go_sell_items(LAND)
+    go_sell_items()
 
 def buy_items_wrap(accountNumber):
     go_buy_items('hardwood')
@@ -24,7 +24,7 @@ def buy_items_wrap(accountNumber):
 
 if __name__=='__main__':
     firstTime=True
-    firstTimeRange=(27,39)
+    firstTimeRange=(8,39)
     accountRange=(1,39)
     while(True):
         range = firstTimeRange if firstTime else accountRange
@@ -35,7 +35,7 @@ if __name__=='__main__':
         nextState=""
         if state=='s1':
             nextState='s2'
-            callbacks.extend([farm_account_wrap])
+            callbacks.extend([farm_account_wrap,cut_trees])
         elif state=='s2':
             nextState='s3'
             callbacks.extend([cut_trees])
