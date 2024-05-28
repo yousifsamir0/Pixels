@@ -48,3 +48,7 @@ def sell_items_command(itemName:str,quantity:int,pricePerOne:int):
     itemName_binary = (0xa4 +len(itemName)).to_bytes() + b'itm_' +itemName.encode()
     sellC=b'\r\xabmarketplace\x85\xaasubcommand\xa6create\xa6itemId'+itemName_binary+b'\xa8quantity'+quantity_binary+b'\xa5price'+price_binary+b'\xa8currency\xa9cur_coins'
     return [list(sellC)]
+def use_item_on_self_command(itemName:str,count:int=1):
+    itemName_binary = (0xa4 +len(itemName)).to_bytes() + b'itm_' +itemName.encode()
+    command = b'\r\xa2ui\x83\xa2id' + itemName_binary + b'\xa4type\xa4self\xa4slot\x00'
+    return [list(command)]*count

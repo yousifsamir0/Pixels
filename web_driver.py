@@ -211,10 +211,12 @@ if __name__=='__main__':
     # input()
     from driver.pixels_driver import Items,Market
     from driver.core.parser import WebSocketParser
-    from driver.core.commands import cut_trees_command,collect_wood_command
+    from driver.core.commands import cut_trees_command,collect_wood_command,use_item_on_self_command
     from Tasks import buy_from_hazel,go_sell_items
-    # Items.travel_bookmark('generalStore')
-    go_sell_items()
+    Items.cookis_login(34,100)
+    Items.travel_bookmark(1019)
+    # Items.driver.sendWS(use_item_on_self_command('honey',4))
+    # go_sell_items()
     # buy_from_hazel('butterberryseeds',1)
     
     # data = Items.driver.evaluate_handle(f"JSON.parse('{json.dumps([1,2,3,[4,5,6]])}')")

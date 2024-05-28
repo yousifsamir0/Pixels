@@ -81,6 +81,11 @@ class WebSocketParser():
         # Extract IDs from matches
         ids = [match[1:25].decode() for match in matches]
         cls.ent_trees=ids
+        #---------------Items
+        # pattern = b'\xff[^\xb8]*itm_[^\xb8]*\xff'
+        # regex = re.compile(pattern)
+        # # Find all matches
+        # matches:list[bytes] = regex.findall(payload)
         
 
     @classmethod

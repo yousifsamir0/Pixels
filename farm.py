@@ -5,7 +5,7 @@ import math
 # from web_driver import Chrome
 from driver.pixels_driver import HUD,Items
 from utils import is_land_need_shear,wait_if_needed,update_and_save_land_status
-from driver.core.commands import plant_command,water_command,shear_command
+from driver.core.commands import plant_command,water_command,shear_command,use_item_on_self_command
 
 
 TIME_TO_GROW = 1 # minuts
@@ -15,6 +15,18 @@ ENERGY_BLOL = 'energydrink.png'
 ENERGY_DRINK_AMOUNT = 50
 REQUIRED_ENERGY = 220
 CHECK_ENERGY = False
+
+# ENERGY_LIST = [
+#     {'name':'muckchuck_mead','energy':326.25},
+#     {'name':'scarrotwine','energy':257.81},
+#     {'name':'dry_maple_glazed_grumpkin_slabs','energy':247.04},
+# ]
+ENERGY_LIST = {
+   'muckchuck_mead':326.25,
+   'scarrotwine':257.81,
+   'dry_maple_glazed_grumpkin_slabs':247.04
+}
+
 
 
 v = vision.Vision()
@@ -64,6 +76,40 @@ def use_energy():
     playerPos= (830,550)
     v.click_on(playerPos)
     time.sleep(0.2)
+    
+
+def check_energy():
+    if CHECK_ENERGY:
+        energy = 0
+        e_list= []
+        current_e = HUD.get_energy()
+        if current_e>=REQUIRED_ENERGY:
+            return True
+        for name,e_val in ENERGY_LIST.items():
+            count = Items.get_item_count(name+'png')
+            if count:
+                req_e  = REQUIRED_ENERGY - energy
+                required_e_count = math.ceil(req_e/e_val)
+                if e_val+energy+current_e > 1000:
+                    print('[check_energy] it will exceed 1000 skipping this')
+                    continue
+                energy += e_val
+                e_list.append({'name':name,'amount':min(required_e_count,count)})
+                if required_e_count>count:
+                    continue
+                else:
+                    break
+            else:
+                continue
+        if e_list:
+            for item in e_list:
+                HUD.driver.sendWS(use_item_on_self_command(item['name'],item['amount']))
+                time.sleep(0.1)
+        else:
+            print('[check_energy] energy not found')
+            return False
+    else: 
+        return True
     
 
 
