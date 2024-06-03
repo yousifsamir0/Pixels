@@ -213,8 +213,80 @@ if __name__=='__main__':
     from driver.core.parser import WebSocketParser
     from driver.core.commands import cut_trees_command,collect_wood_command,use_item_on_self_command
     from Tasks import buy_from_hazel,go_sell_items
-    Items.cookis_login(34,100)
-    Items.travel_bookmark(1019)
+
+def task(i):
+    from selenium.webdriver.common.keys import Keys
+    from driver.pixels_driver import Items,Market
+    def travel_to_goose():
+        Items.travel_bookmark()
+        Items.travel_bookmark('DrunkenGooseInterior')
+
+
+    
+    input('press to start buy sauces, open menu first')
+    if i!=37:
+        Market.buy('hot sauce',7,18000)
+        Market.buy('Spicy BBQ Sauce',1,18000)
+    Market.buy('4-Leaf Cloveregano',3,2500)
+    Market.buy('Hardwood Smoked BBQ Sauce',1,3000)
+    Market.buy('Honey BBQ Sauce',1,3000)
+    Market.buy('Traditional BBQ Sauce',1,3000)
+    Market.buy('Tangy BBQ Sauce',1,3000)
+    Items.driver.send_keys(Keys.ESCAPE)
+    
+    travel_to_goose()
+    input('press to return to Galore')
+    Items.travel_to_bucks_galore()
+
+    # input('press to sell, open menu first')
+    # Market.sell('hot sauce',17150)
+    # Market.sell('4-Leaf Cloveregano',1990)
+    # Market.sell('Hardwood Smoked BBQ Sauce',2290)
+    # Market.sell('Honey BBQ Sauce',2590)
+    # Market.sell('Traditional BBQ Sauce',2690)
+    # Market.sell('Spicy BBQ Sauce',16950)
+    # Market.sell('Tangy BBQ Sauce',2540)
+
+    input('press to buy dry, open menu first')
+    if i!=25:
+        Market.buy('Dry Honey-Kissed Popberry Chops',1,8000)
+    Market.buy('Dry Baby Back Butterberry Ribs',1,8000)
+    Market.buy('Dry Maple-Glazed Grumpkin Slabs',1,8000)
+    Market.buy('Dry Salt-Encrusted Scarrot Skewers',1,8000)
+    Market.buy('Dry Pulled Muckchuck Platter',1,8000)
+    Items.driver.send_keys(Keys.ESCAPE)
+
+    travel_to_goose()
+    input('press to return to Galore')
+    Items.travel_to_bucks_galore()
+    input('press to buy moist, open menu first')
+
+    Market.buy('Moist Honey-Kissed Grumpkin Chops',1,10000)
+    Market.buy('Moist Salt-Encrusted Popberry Skewers',1,9500)
+    Market.buy('Moist Scarrot and Butterberry Kebabs',1,10000)
+    Market.buy('Moist Maple-Glazed Scarrot Slabs',1,7000)
+    Market.buy('Moist Broiled Muckchuck Burgers',1,25000)   
+    Items.driver.send_keys(Keys.ESCAPE)
+
+    travel_to_goose()
+    input('press to return to Galore')
+    Items.travel_to_bucks_galore()
+    input('press to buy 24 popberry Wine, open menu first')
+
+    Market.buy('Popberry Wine',24,1500)  
+    Items.driver.send_keys(Keys.ESCAPE)
+    travel_to_goose()
+
+    input('press to Next account')
+
+
+    # Items.cookis_login(34,100)
+    # for i in range(1347,1371):
+    #     Items.travel_bookmark(i)
+    #     time.sleep(0.7)
+    # Items.travel_bookmark(1043)
+    # Items.travel_bookmark(1040)
+
     # Items.driver.sendWS(use_item_on_self_command('honey',4))
     # go_sell_items()
     # buy_from_hazel('butterberryseeds',1)
@@ -260,7 +332,7 @@ if __name__=='__main__':
 
 
 
-    time.sleep(1000)
+    # time.sleep(1000)
 
 
 

@@ -24,17 +24,17 @@ class WebSocketParser():
 
     @classmethod
     def parse_map_data(cls,payload:bytes):
-
-        #start of id(hex sequence) then any data didnt contain the start sequence here (\x82\xb8) then fixed_value
-        # pattern = b'\x82\xb8(?:.(?!\x82\xb8))*?ent_soil'  #works but mesh 3agebny
-        pattern = b'[0-9a-fA-F]{24}(?:.(?!\x82\xb8))*?ent_soil'
-        regex = re.compile(pattern)
+        pattern = b'([0-9a-f]{24}).{1,10}?[0-9a-f]{24}\x84\xa8ent_soil'
+        regex = re.compile(pattern,re.DOTALL)
         # Find all matches
         matches:list[bytes] = regex.findall(payload)
         # Extract IDs from matches
         # print([match  for match in matches])
         # print(payload)
-        cls.ent_soil= [match[:24].decode() for match in matches]
+        # print(matches)
+        # print(len(matches))
+        cls.ent_soil= [match.decode() for match in matches]
+        # print(cls.ent_soil)
 
     @classmethod
     def parse_updatePlayer_frame(cls,payload:bytes):

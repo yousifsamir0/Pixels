@@ -66,8 +66,12 @@ def save_cookies_routine(acc_number_range):
 
 
 def run_bots(acc_number_range,callbacks=[]):
+    muted = [27,30]
+    purchase_limit = [28,29]
     Player.check_and_activate_window()
     for i in range(acc_number_range[0],acc_number_range[1]+1):
+        if i in muted:
+            continue
         HUD.cookis_login(i,137)
         v.wait_untill_travel()
         print(f'account {i} logged in')
@@ -83,7 +87,8 @@ def run_bots(acc_number_range,callbacks=[]):
 if __name__=='__main__':
     def test(i):
         input(str(i))
-    run_bots((6,39),[collect_mail_if_any,go_buy_items_then_trade_them])
+    from web_driver import task
+    run_bots((37,39),[task])
 
 
 
