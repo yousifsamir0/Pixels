@@ -70,10 +70,10 @@ def run_bots(acc_number_range,callbacks=[]):
     purchase_limit = [28,29]
     Player.check_and_activate_window()
     for i in range(acc_number_range[0],acc_number_range[1]+1):
-        if i in muted:
+        if i in muted or i in purchase_limit:
             continue
         HUD.cookis_login(i,137)
-        v.wait_untill_travel()
+        # v.wait_untill_travel()
         print(f'account {i} logged in')
         for callback in callbacks:
             callback(i)

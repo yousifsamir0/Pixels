@@ -2,6 +2,7 @@ import socket
 import threading
 import time
 from driver.pixels_driver import Trade
+
 class Server:
     def __init__(self, host, port):
         self.host = host

@@ -104,6 +104,7 @@ class PixelsBase:
         self.driver.scroll_to_element(scroller,world)
         time.sleep(0.1)
         world.click()
+        self.wait_for_travel()
     def cookies_logout(self):
         self.driver.driver.delete_all_cookies()
         self.driver.driver.refresh()

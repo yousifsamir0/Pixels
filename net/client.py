@@ -23,7 +23,7 @@ class Client:
 
 if __name__ == '__main__':
     # Create and start the client
-    client = Client('192.168.1.102', 12345)
+    client = Client('192.168.1.104', 12345)
     # Send a message to the server
     client.send_message("Hello from the client!")
     # Receive a response from the server
